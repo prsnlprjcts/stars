@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Starry Night for You 🌙</title>
+    <script type="text/javascript" src="starfield.js"></script>
+    <title>Starry Night</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
 
-        body {
+        /* body {
             margin: 0;
             height: 100vh;
             background: linear-gradient(to top, #2b3479 0%, #151c3d 45%, #1e2760 75%, #2b367f 100%);
@@ -17,19 +18,18 @@
             font-family: 'Quicksand', sans-serif;
         }
 
-        /* faint glow near the “horizon” */
         body::before {
             content: "";
             position: absolute;
             inset: 0;
             background: radial-gradient(circle at 50% 85%, rgba(255, 200, 150, 0.18) 0%, transparent 50%);
             z-index: 0;
-        }
+        } */
 
         h1 {
             text-align: center;
             padding-top: 20px;
-            color: #fffafc;
+            color: #f0edc3;
             font-size: 1rem;
             text-shadow: 0 0 14px rgba(255, 255, 255, 0.4);
             letter-spacing: 1px;
@@ -41,14 +41,13 @@
             position: relative;
             width: 100%;
             height: calc(100vh - 80px);
-            z-index: 1;
+            /* z-index: 1; */
         }
 
-        /* stars */
         .star {
             position: absolute;
             font-size: 28px;
-            color: #fffde8;
+            color: #f0edc3;
             text-shadow:
                 0 0 6px #fff6c9,
                 0 0 12px #ffd8f5,
@@ -78,7 +77,6 @@
             }
         }
 
-        /* popup note */
         .note {
             position: fixed;
             top: 50%;
@@ -106,9 +104,9 @@
 
         .close-btn {
             margin-top: 12px;
-            background: #8d79e6;
+            background: #f0ff6a;
             border: none;
-            color: white;
+            color: #5e4b66;
             padding: 6px 14px;
             border-radius: 8px;
             font-size: 0.9rem;
@@ -120,10 +118,30 @@
             background: #7362c7;
         }
     </style>
+
+    <style type="text/css">
+	html, body {
+		margin: 0px;
+        background: #000;
+        height: 100%;
+        overflow: hidden;
+        z-index:0;
+    }
+    canvas {
+		display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+	}
+	</style>
+
 </head>
 
 <body>
+
+    <canvas id="canvas" width="100%" height="100%"></canvas>
     <h1>Click the stars</h1>
+    
 
     <div class="sky" id="sky"></div>
 
@@ -131,6 +149,7 @@
         <p id="noteText"></p>
         <button class="close-btn" onclick="closeNote()">Close</button>
     </div>
+
 
     <script>
         const messages = [
@@ -174,8 +193,7 @@
         ];
 
         const sky = document.getElementById('sky');
-        let messageIndex = 0; // start from the first message
-
+        let messageIndex = 0; 
         stars.forEach(s => {
             const star = document.createElement('div');
             star.classList.add('star');
@@ -184,7 +202,7 @@
             star.style.left = s.left;
             star.addEventListener('click', () => {
                 showNote(messages[messageIndex]);
-                messageIndex = (messageIndex + 1) % messages.length; // loop back to start
+                messageIndex = (messageIndex + 1) % messages.length; 
             });
             sky.appendChild(star);
         });
@@ -205,3 +223,26 @@
 </body>
 
 </html>
+
+<!-- <html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="starfield.js"></script>
+	<style type="text/css">
+	html, body {
+		margin: 0px;
+        background: #000;
+        height: 100%;
+        overflow: hidden;
+    }
+    canvas {
+		display: block;
+        width: 100%;
+        height: 100%;
+	}
+	</style>
+</head>
+<body>
+<canvas id="canvas" width="100%" height="100%"></canvas>
+</body>
+</html> -->
